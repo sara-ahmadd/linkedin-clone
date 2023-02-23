@@ -15,7 +15,9 @@ import logo from "./../../images/logo.svg";
 import mainImage from "./../../images/main-section.svg";
 import { FcGoogle } from "react-icons/fc";
 import { NavLink } from "react-router-dom";
-const Login = () => {
+import { signUp } from "../../redux/actions";
+import { connect } from "react-redux";
+const Login = (props) => {
   return (
     <Container>
       <Navbar>
@@ -32,7 +34,7 @@ const Login = () => {
       <Section>
         <LeftSection>
           <h1>Welcome to your profissional community</h1>
-          <GoogleSignIn>
+          <GoogleSignIn onClick={props.signInWithGoogle}>
             <i>
               <FcGoogle />
             </i>
@@ -46,5 +48,14 @@ const Login = () => {
     </Container>
   );
 };
-
-export default Login;
+const mapStateToProps = (state) => {
+  return {
+    user: state.user.user,
+  };
+};
+const mapDispatchToProps = (dispatch) => {
+  return {
+    signInWithGoogle: dispatch(signUp),
+  };
+};
+export default connect(mapStateToProps, mapDispatchToProps)(Login);
