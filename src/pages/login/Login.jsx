@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import {
   Container,
   GoogleSignIn,
@@ -11,21 +11,23 @@ import {
   Section,
   SignUp,
 } from "./LoginStyles";
-import logo from "./../../images/logo.svg";
+import LogoComponent from "./LogoComponent";
 import mainImage from "./../../images/main-section.svg";
 import { FcGoogle } from "react-icons/fc";
-import { NavLink } from "react-router-dom";
 import { signUp } from "../../redux/actions";
 import { connect } from "react-redux";
+import { useNavigate } from "react-router-dom";
+
 const Login = (props) => {
+  const navigate = useNavigate();
+  console.log(props.user);
+  useEffect(() => {
+    props.user && navigate("/home");
+  });
   return (
     <Container>
       <Navbar>
-        <Logo>
-          <NavLink to={"/"}>
-            <img width={200} height={150} src={logo} alt="linkedin" />
-          </NavLink>
-        </Logo>
+        <LogoComponent />
         <Links>
           <Join>Join Now</Join>
           <SignUp>Sign Up</SignUp>
@@ -55,7 +57,7 @@ const mapStateToProps = (state) => {
 };
 const mapDispatchToProps = (dispatch) => {
   return {
-    signInWithGoogle: dispatch(signUp),
+    signInWithGoogle: () => dispatch(signUp()),
   };
 };
 export default connect(mapStateToProps, mapDispatchToProps)(Login);

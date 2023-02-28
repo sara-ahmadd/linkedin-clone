@@ -4,11 +4,12 @@ import { auth, googleProvider } from "./../../firebase/firebase";
 import { signInWithPopup } from "firebase/auth";
 
 export function signUp() {
-  return (dispatch) => {
-    signInWithPopup(auth, googleProvider)
-      .then((credntials) => {
-        dispatch(actions.setUser(credntials.user));
+  return async (dispatch) => {
+    await signInWithPopup(auth, googleProvider)
+      .then((credentials) => {
+        console.log(credentials.user);
+        dispatch(actions.setUser(credentials.user));
       })
-      .catch((err) => alert(err));
+      .catch((err) => console.log(err));
   };
 }
