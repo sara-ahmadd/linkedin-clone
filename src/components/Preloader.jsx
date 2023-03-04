@@ -2,17 +2,16 @@ import React from "react";
 import "./loaderStyles.css";
 
 const Loader = () => {
-  return ReactDOM.createPortal(
-    <>
-      <div class="container">
-        <div class="part1">Linked</div>
-        <div class="part2">in</div>
+  return (
+    <div className="content">
+      <div className="container">
+        <div className="part1">Linked</div>
+        <div className="part2">in</div>
       </div>
-      <div class="loader">
-        <div class="loading"></div>
+      <div className="loader">
+        <div className="loading"></div>
       </div>
-    </>,
-    document.getElementById("loader")
+    </div>
   );
 };
 

@@ -1,19 +1,20 @@
+import { useEffect } from "react";
 import { useSelector } from "react-redux";
-import { Navigate, useLocation } from "react-router-dom";
+import { Navigate, useLocation, useNavigate } from "react-router-dom";
 
 function RequireAuth({ children }) {
-  const location = useLocation();
+  const navigate = useNavigate();
   const { user } = useSelector((state) => {
     return {
       user: state.user.user,
     };
   });
-
-  if (user) {
-    return children;
-  } else {
-    return <Navigate to="/" state={{ path: location.pathname }} />;
-  }
+  useEffect(() => {
+    if (!user) {
+      navigate("/", { replace: true });
+    }
+  }, [user]);
+  return children;
 }
 
 export default RequireAuth;

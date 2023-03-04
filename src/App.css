@@ -1,16 +1,16 @@
 #root {
   max-width: 1280px;
-  margin: 0 auto;
   padding: 10px;
-  text-align: center;
+  margin: 0 auto;
 }
 body {
   background-color: #f7f4e9;
   padding: 0;
   margin: 0;
 }
-.main-section {
+.main-content {
   padding: 0;
+  margin: 0 auto;
   padding-top: 50px;
 }
 .logo {

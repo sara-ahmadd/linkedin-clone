@@ -3,21 +3,22 @@ import { black, greyColor, paleGreyColor, white } from "../colors";
 import { paleBlueBackground } from "../colors";
 const Container = styled.div`
   margin: 0 auto;
-  height: fit-content;
   width: 100%;
   background-color: ${white};
-  padding: 10px 0;
   position: fixed;
   top: 0;
+  left: 0;
+  padding-bottom: 5px;
   @media (min-width: 2100px) {
-    width: 70%;
+    width: 100%;
   }
 `;
 const Content = styled.div`
+  height: fit-content;
   display: flex;
   justify-content: space-between;
   align-items: center;
-  width: 80%;
+  width: 90%;
   margin: 0 auto;
   @media (max-width: 768px) {
     width: 100%;
@@ -33,8 +34,8 @@ const LeftSideContent = styled.div`
 `;
 
 const Logo = styled.div`
-  width: 30px;
-  height: 30px;
+  width: 40px;
+  height: 40px;
   & > img {
     width: 100%;
     height: 100%;
@@ -47,11 +48,12 @@ const Search = styled.div`
   justify-content: center;
   position: relative;
   & > input {
-    width: 80%;
-    height: 10px;
+    width: 100%;
+    height: 20px;
     padding: 10px 10px 10px 40px;
     background-color: ${paleGreyColor};
     border: none;
+    font-size: 20px;
     &:focus {
       outline: none;
     }
@@ -69,7 +71,7 @@ const Search = styled.div`
 const Navbar = styled.nav`
   height: 70px;
   display: flex;
-  align-items: center;
+  align-items: flex-end;
   justify-content: center;
   @media (max-width: 768px) {
     width: 100%;
@@ -91,6 +93,7 @@ const Navbar = styled.nav`
 
 const List = styled.ul`
   padding-left: 0;
+  margin: 0;
   list-style: none;
   display: flex;
   align-items: center;
@@ -108,6 +111,10 @@ const SignOutList = styled.a`
     top: 100%;
     left: 0;
     cursor: pointer;
+    @media (max-width: 767px) {
+      top: -90%;
+      left: -30%;
+    }
   }
 `;
 
@@ -126,13 +133,12 @@ const ListItem = styled.li`
     text-decoration: none;
     background-color: transparent;
     img {
-      width: 30px;
-      height: 30px;
+      width: 35px;
+      height: 35px;
+      border-radius: 50%;
       filter: invert(62%) sepia(6%) saturate(138%) hue-rotate(114deg)
         brightness(88%) contrast(85%);
       &#user {
-        height: 50px;
-        width: 50px;
         border-radius: 50%;
         filter: none;
       }

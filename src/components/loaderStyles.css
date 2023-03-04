@@ -3,6 +3,8 @@
 body {
   font-family: "Lato", sans-serif;
   background: #f3f2ef;
+}
+.content {
   position: absolute;
   top: 50%;
   left: 50%;

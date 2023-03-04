@@ -1,4 +1,4 @@
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import "./App.css";
 import Login from "./pages/login/Login";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
@@ -7,26 +7,39 @@ import Header from "./components/Header";
 import { connect } from "react-redux";
 import { ifAuthStateChangd } from "./redux/actions";
 import RequireAuth from "./components/ReqAuth";
+import Loader from "./components/Preloader";
 function App(props) {
+  const [loading, setLoading] = useState(false);
+  useEffect(() => {
+    setLoading(true);
+    setTimeout(() => {
+      setLoading(false);
+    }, 3000);
+  }, []);
+
   useEffect(() => {
     props.authCanged();
   }, []);
   return (
     <div className="app">
-      <Router>
-        <Routes>
-          <Route path="/" element={<Login />} />
-          <Route
-            path="/home"
-            element={
-              <RequireAuth>
-                <Header />
-                <Home />
-              </RequireAuth>
-            }
-          />
-        </Routes>
-      </Router>
+      {loading ? (
+        <Loader />
+      ) : (
+        <Router>
+          <Routes>
+            <Route path="/" element={<Login />} />
+            <Route
+              path="/home"
+              element={
+                <RequireAuth>
+                  <Header />
+                  <Home />
+                </RequireAuth>
+              }
+            />
+          </Routes>
+        </Router>
+      )}
     </div>
   );
 }

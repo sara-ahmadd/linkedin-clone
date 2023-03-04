@@ -20,7 +20,7 @@ import { useNavigate } from "react-router-dom";
 
 const Login = (props) => {
   const navigate = useNavigate();
-  console.log(props.user);
+
   useEffect(() => {
     props.user && navigate("/home");
   });

@@ -77,6 +77,7 @@ height : 100%;
   font-size: 50px;
   line-height: 60px;
   color: ${blue};
+  text-align : left;
 }
  @media (max-width: 768px) {
   width : 100%;
