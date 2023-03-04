@@ -1,9 +1,16 @@
+import { useEffect } from "react";
 import "./App.css";
 import Login from "./pages/login/Login";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import Home from "./pages/home/Home";
 import Header from "./components/Header";
-function App() {
+import { connect } from "react-redux";
+import { ifAuthStateChangd } from "./redux/actions";
+import RequireAuth from "./components/ReqAuth";
+function App(props) {
+  useEffect(() => {
+    props.authCanged();
+  }, []);
   return (
     <div className="app">
       <Router>
@@ -12,10 +19,10 @@ function App() {
           <Route
             path="/home"
             element={
-              <>
+              <RequireAuth>
                 <Header />
                 <Home />
-              </>
+              </RequireAuth>
             }
           />
         </Routes>
@@ -23,5 +30,15 @@ function App() {
     </div>
   );
 }
+const mapStateToProps = (state) => {
+  return {
+    user: state.user.user,
+  };
+};
+const mapDispatchToProps = (dispatch) => {
+  return {
+    authCanged: () => dispatch(ifAuthStateChangd()),
+  };
+};
 
-export default App;
+export default connect(mapStateToProps, mapDispatchToProps)(App);
