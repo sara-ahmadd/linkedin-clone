@@ -4,14 +4,13 @@ import { auth, googleProvider } from "./../../firebase/firebase";
 import { onAuthStateChanged, signInWithPopup, signOut } from "firebase/auth";
 
 export function signUp() {
-  return async (dispatch) => {
-    await signInWithPopup(auth, googleProvider)
+  return (dispatch) =>
+    signInWithPopup(auth, googleProvider)
       .then((credentials) => {
-        console.log(credentials.user);
         dispatch(actions.setUser(credentials.user));
+        console.log(credentials.user);
       })
       .catch((err) => console.log(err.message));
-  };
 }
 export function ifAuthStateChangd() {
   return (dispatch) => {

@@ -1,15 +1,15 @@
 import React, { useState } from "react";
-import headerLogo from "./../images/logo-header.svg";
+import headerLogo from "/images/logo-header.svg";
 import { FaSearch } from "react-icons/fa";
 import { NavLink } from "react-router-dom";
-import home from "./../images/home.svg";
-import myNetwork from "./../images/my-network.svg";
-import jobs from "./../images/jobs.svg";
-import messaging from "./../images/messaging.svg";
-import notifications from "./../images/notifications.svg";
-import user from "./../images/user-profile.png";
-import work from "./../images/work.svg";
-import arrow from "./../images/down-arrow.svg";
+import home from "/images/home.svg";
+import myNetwork from "/images/my-network.svg";
+import jobs from "/images/jobs.svg";
+import messaging from "/images/messaging.svg";
+import notifications from "/images/notifications.svg";
+import user from "/images/user-profile.png";
+import work from "/images/work.svg";
+import arrow from "/images/down-arrow.svg";
 import { connect } from "react-redux";
 import * as styles from "./headerStyles";
 import { signOutFunc } from "../redux/actions";
@@ -70,7 +70,6 @@ const Header = (props) => {
                 ) : (
                   <img id="user" src={user} alt="user" />
                 )}
-                {console.log(props.user && props.user.photoURL)}
                 <h5>
                   Me
                   <span>

@@ -1,6 +1,6 @@
 import React from "react";
 import { Logo } from "./LoginStyles";
-import logo from "./../../images/logo.svg";
+import logo from "/images/logo.svg";
 import { NavLink } from "react-router-dom";
 
 const LogoComponent = () => {

@@ -12,7 +12,7 @@ import {
   SignUp,
 } from "./LoginStyles";
 import LogoComponent from "./LogoComponent";
-import mainImage from "./../../images/main-section.svg";
+import mainImage from "/images/main-section.svg";
 import { FcGoogle } from "react-icons/fc";
 import { signUp } from "../../redux/actions";
 import { connect } from "react-redux";
@@ -24,6 +24,7 @@ const Login = (props) => {
   useEffect(() => {
     props.user && navigate("/home");
   });
+  console.log(props.user);
   return (
     <Container>
       <Navbar>

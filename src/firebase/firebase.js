@@ -11,10 +11,13 @@ const firebaseConfig = {
   appId: import.meta.env.VITE_PROJECT_APP_ID,
   measurementId: import.meta.env.VITE_PROJECT_APP_MEASURMENT_ID,
 };
-
 const app = initializeApp(firebaseConfig);
 const auth = getAuth(app);
 const googleProvider = new GoogleAuthProvider();
+
+googleProvider.setCustomParameters({
+  prompt: "select_account",
+});
 const database = getFirestore(app);
 
 export { auth, googleProvider, database };
