@@ -1,6 +1,6 @@
 import styled from "styled-components";
 import { black, greyColor, paleGreyColor, white } from "../colors";
-import { paleBlueBackground } from "../colors";
+
 const Container = styled.div`
   margin: 0 auto;
   width: 100%;
@@ -8,6 +8,7 @@ const Container = styled.div`
   position: fixed;
   top: 0;
   left: 0;
+  z-index: 100;
   padding-bottom: 5px;
   @media (min-width: 2100px) {
     width: 100%;
@@ -79,8 +80,8 @@ const Navbar = styled.nav`
     bottom: 0;
     left: 0;
     gap: 2px;
-    border-top: 1px solid ${paleGreyColor};
-    background-color: ${paleBlueBackground};
+    border-top: 2px solid ${greyColor};
+    background-color: ${paleGreyColor};
     & > ul {
       gap: 10px;
     }
