@@ -21,7 +21,7 @@ function App(props) {
     props.authCanged();
   }, []);
   return (
-    <div className="app">
+    <div className="app" id="App">
       {loading ? (
         <Loader />
       ) : (
@@ -32,7 +32,6 @@ function App(props) {
               path="/home"
               element={
                 <RequireAuth>
-                  <Header />
                   <Home />
                 </RequireAuth>
               }

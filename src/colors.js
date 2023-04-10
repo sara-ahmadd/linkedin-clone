@@ -1,7 +1,9 @@
 export const greyColor = "#8d8f91";
 export const darkGrey = "#333";
+export const lightGrey = "#c9c4c3";
 export const white = "#fff";
-export const black = "#000";
+export const black = "rgb(0, 0, 0)";
+export const paleBlack = "rgba(0, 0, 0, 0.7)";
 export const paleGreyColor = "#ebeff2";
 export const blueBorder = "rgb(79, 144, 247)";
 export const blue = "#065d9e";

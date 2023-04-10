@@ -24,7 +24,6 @@ const Login = (props) => {
   useEffect(() => {
     props.user && navigate("/home");
   });
-  console.log(props.user);
   return (
     <Container>
       <Navbar>

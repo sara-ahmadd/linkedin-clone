@@ -8,3 +8,16 @@ export const setUser = (payload) => {
   };
 };
 
+export const setLoading = (status) => {
+  return {
+    type: actionTypes.SET_LOADING_STATUS,
+    status,
+  };
+};
+
+export const getPosts = (payload) => {
+  return {
+    type: actionTypes.GET_POSTS,
+    posts: payload,
+  };
+};

@@ -1,6 +1,7 @@
 import { initializeApp } from "firebase/app";
 import { getAuth, GoogleAuthProvider } from "firebase/auth";
-import { getFirestore } from "firebase/firestore";
+import { collection, getFirestore } from "firebase/firestore";
+import { getStorage } from "firebase/storage";
 
 const firebaseConfig = {
   apiKey: import.meta.env.VITE_PROJECT_API_KEY,
@@ -19,5 +20,7 @@ googleProvider.setCustomParameters({
   prompt: "select_account",
 });
 const database = getFirestore(app);
+const collectionRef = collection(database, "posts");
+const storage = getStorage();
 
-export { auth, googleProvider, database };
+export { auth, googleProvider, database, collectionRef, storage };
