@@ -3,6 +3,7 @@ import SinglePost from "./SinglePost";
 import { connect } from "react-redux";
 import { fetchPosts } from "../../redux/actions";
 import { Container } from "./mainSectionStyles";
+import styled from "styled-components";
 
 const Posts = ({ posts, getAllPosts }) => {
   useEffect(() => {
@@ -10,11 +11,18 @@ const Posts = ({ posts, getAllPosts }) => {
   }, []);
 
   return (
-    <Container>
-      {posts && posts.map((post) => <SinglePost post={post} />)}
-    </Container>
+    <PostsContainer>
+      {posts &&
+        posts.map((post) => {
+          const [data, id] = post;
+          return <SinglePost key={id} post={data} />;
+        })}
+    </PostsContainer>
   );
 };
+const PostsContainer = styled(Container)`
+  background: none !important;
+`;
 const mapStateToProps = (state) => {
   return {
     posts: state.postsState.posts,

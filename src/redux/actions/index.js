@@ -96,7 +96,10 @@ export function postAPI(payload) {
 export function fetchPosts() {
   return (dispatch) => {
     onSnapshot(collectionRef, (snapshot) => {
-      dispatch(actions.getPosts([...snapshot.docs.map((x) => x.data())]));
+      dispatch(
+        actions.getPosts([...snapshot.docs.map((x) => [x.data(), x.id])])
+      );
+      console.log([...snapshot.docs.map((x) => [x.data(), x.id])]);
     });
   };
 }

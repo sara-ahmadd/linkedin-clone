@@ -87,6 +87,7 @@ const iconsDiv = styled.div`
 const Buttons = styled(iconsDiv)``;
 const NewsFeed = styled.div`
   display: flex;
+  background-color: transparent !important;
 `;
 
 export { Buttons, NewsFeed, iconsDiv, UserImg, Post, PostSection, Container };
