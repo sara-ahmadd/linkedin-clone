@@ -2,6 +2,7 @@
 import * as actions from "./actions";
 import {
   auth,
+  collectionQuery,
   collectionRef,
   database,
   googleProvider,
@@ -42,7 +43,6 @@ export function signOutFunc() {
 export function postAPI(payload) {
   return (dispatch) => {
     dispatch(actions.setLoading(true));
-
     if (payload.photo) {
       const storageRef = ref(storage, `photos/${payload.photo.name}`);
 
@@ -73,9 +73,9 @@ export function postAPI(payload) {
               description: payload.description,
             });
           });
+          dispatch(actions.setLoading(false));
         }
       );
-      dispatch(actions.setLoading(false));
     } else {
       addDoc(collectionRef, {
         user: {
@@ -95,11 +95,10 @@ export function postAPI(payload) {
 }
 export function fetchPosts() {
   return (dispatch) => {
-    onSnapshot(collectionRef, (snapshot) => {
+    onSnapshot(collectionQuery, (snapshot) => {
       dispatch(
         actions.getPosts([...snapshot.docs.map((x) => [x.data(), x.id])])
       );
-      console.log([...snapshot.docs.map((x) => [x.data(), x.id])]);
     });
   };
 }

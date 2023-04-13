@@ -1,7 +1,6 @@
 import styled from "styled-components";
 const Container = styled.div`
   width: 100%;
-  padding: 0 10px;
   height: 100%;
   padding-top: 100px;
   padding-bottom: 10px;
@@ -13,11 +12,10 @@ const Container = styled.div`
 const Layout = styled.div`
   width: 100%;
   display: flex;
-  justify-content: strech;
   flex-direction: row;
-  align-items: flex-start;
-  gap: 10px;
+  gap: 20px;
   flex-wrap: wrap;
+  align-items: stretch;
   @media (min-width: 2000px) {
     justify-content: strech;
     width: 60%;

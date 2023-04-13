@@ -93,7 +93,8 @@ const Navbar = styled.nav`
 `;
 
 const List = styled.ul`
-  padding-left: 0;
+  padding-left: 10px;
+  padding-top: 10px;
   margin: 0;
   list-style: none;
   display: flex;

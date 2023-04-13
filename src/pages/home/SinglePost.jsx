@@ -1,37 +1,93 @@
-import React from "react";
-import styled from "styled-components";
-import { black, lightGrey, white } from "../../colors";
+import React, { useState } from "react";
+import * as Styles from "./singlePostStyles";
 import comment from "/images/share-comment.svg";
 import send from "/images/send-icon.svg";
+import like from "/images/like-icon.svg";
 import share from "/images/share-icon.svg";
 import ReactPlayer from "react-player";
+import ellipsis from "/images/ellipsis.svg";
+import heart from "/images/heart.png";
+import likeThumb from "/images/like.png";
 
 const SinglePost = ({ post }) => {
-  const { user, description, video, photo } = post;
+  const { user, description, video, photo, comments } = post;
+  const dateObject = new Date(user.time.seconds * 1000);
+  const day = dateObject.getDate();
+  const month = dateObject.getMonth() + 1;
+  const year = dateObject.getFullYear();
+
+  const pmOrAm =
+    dateObject.getHours() >= 0 && dateObject.getHours() < 12 ? "AM" : "PM";
+
+  const getHrs =
+    dateObject.getHours() > 12
+      ? dateObject.getHours() - 12
+      : dateObject.getHours() == 0
+      ? dateObject.getHours() + 12
+      : dateObject.getHours() > 0 && dateObject.getHours() < 10
+      ? `0${dateObject.getHours()}`
+      : dateObject.getHours();
+
+  const getMins =
+    dateObject.getMinutes() < 10
+      ? `0${dateObject.getMinutes()}`
+      : dateObject.getMinutes();
+
+  const timeHrs = `${getHrs} : ${getMins} ${pmOrAm}`;
+
+  const dateOfPost = `${day}/${month}/${year}`;
+
+  let [randomNumber] = useState(Math.floor(Math.random() * 100));
+  let [likes, setLikes] = useState(Math.floor(Math.random() * 1000));
+
+  const addLike = () => {
+    setLikes(likes + 1);
+  };
   return (
-    <PostContent>
+    <Styles.PostContent>
       {post.user && (
-        <>
-          <UserInfo>
-            <Image>
+        <Styles.User>
+          <Styles.UserInfo>
+            <Styles.Image>
               <img src={user.image && user.image} alt="user-photo" />
-            </Image>
-            <Details>
+            </Styles.Image>
+            <Styles.Details>
               <h2>{user.name && user.name}</h2>
               <p>{user.email && user.email}</p>
-              <p>{user.time.seconds && user.time.seconds}</p>
-            </Details>
-          </UserInfo>
-        </>
+              <p>{user.time.seconds && timeHrs}</p>
+              <p>{user.time.seconds && dateOfPost}</p>
+            </Styles.Details>
+          </Styles.UserInfo>
+          <Styles.ElipseIcon>
+            <img src={ellipsis} alt="icon" />
+          </Styles.ElipseIcon>
+        </Styles.User>
       )}
-      <Article>{description}</Article>
-      <Video> {video !== "" ? <ReactPlayer url={video} /> : null}</Video>
-      <SharedImage>
+      <Styles.Article>{description}</Styles.Article>
+      <Styles.Video>
+        {video !== "" ? <ReactPlayer width={"100%"} url={video} /> : null}
+      </Styles.Video>
+      <Styles.SharedImage>
         {photo !== "" ? <img src={photo} alt="photo" /> : null}
-      </SharedImage>
-      <ReactionToPost>
-        <button>
-          <img src={comment} alt="image" /> <span>Like</span>
+      </Styles.SharedImage>
+      <Styles.LikeAndShare>
+        <div className="likes">
+          <button>
+            <img src={likeThumb} alt="like" />
+          </button>
+          <button>
+            <img src={heart} alt="heart" />
+          </button>
+          <p>{likes}</p>
+        </div>
+        <div className="comments-share">
+          <p>{comments ? comments : randomNumber + 10} Comments</p>
+          <p>{randomNumber + 1} Share</p>
+        </div>
+      </Styles.LikeAndShare>
+      <Styles.ReactionToPost>
+        <button onClick={addLike}>
+          <img src={like} alt="image" /> <span>Like</span>
         </button>
         <button>
           <img src={comment} alt="image" /> <span>Comment</span>
@@ -42,97 +98,9 @@ const SinglePost = ({ post }) => {
         <button>
           <img src={send} alt="image" /> <span>send</span>
         </button>
-      </ReactionToPost>
-    </PostContent>
+      </Styles.ReactionToPost>
+    </Styles.PostContent>
   );
 };
-const PostContent = styled.div`
-  display: flex;
-  flex-direction: column;
-  justify-content: flex-start;
-  align-items: strech;
-  height: fit-content;
-  max-width: 100%;
-  padding: 10px;
-  margin-bottom: 20px;
-  background-color: ${white};
-`;
-const UserInfo = styled.div`
-  display: flex;
-  gap: 10px;
-  justify-content: flex-start;
-  padding: 10px;
-  align-items: center;
-`;
-const Image = styled.div`
-  width: 60px;
-  height: 60px;
-  img {
-    border-radius: 50%;
-    max-height: 100%;
-    max-width: 100%;
-  }
-`;
-const Details = styled.div`
-  display: flex;
-  flex-direction: column;
-  align-items: flex-start;
-  justify-content: flex-start;
-  > h2,
-  p {
-    margin: 0;
-    padding: 0;
-  }
-  h2 {
-    color: ${black};
-    font-size: 20px;
-  }
-  p {
-    font-size: 14px;
-    color: ${lightGrey};
-  }
-`;
-const Article = styled.p`
-  padding: 10px;
-  margin: 0;
-  text-align: left;
-`;
-const Video = styled.div`
-  max-width: 100%;
-  max-height: 500px;
-  padding: 10px;
-  display: flex;
-  justify-content: center;
-  video {
-    width: 300px;
-    max-height: 100%;
-  }
-`;
-const SharedImage = styled.div`
-  max-width: 100%;
-  max-height: 300px;
-  padding: 10px;
-  img {
-    max-width: 100%;
-    max-height: 300px;
-  }
-`;
-const ReactionToPost = styled.div`
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  max-width: 100%;
-  height: 50px;
-  padding: 10px 20px;
-  border-top: 1px solid ${lightGrey};
-  button {
-    border: none;
-    cursor: pointer;
-    background: none;
-    display: flex;
-    justify-content: center;
-    gap: 5px;
-    align-items: center;
-  }
-`;
+
 export default SinglePost;

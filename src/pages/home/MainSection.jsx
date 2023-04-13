@@ -8,6 +8,7 @@ import event from "/images/event.svg";
 import article from "/images/article.svg";
 import Modal from "./Modal";
 import Posts from "./Posts";
+import loader from "/images/loader.svg";
 
 const MainSection = (props) => {
   const [modal, setModal] = useState(false);
@@ -47,6 +48,9 @@ const MainSection = (props) => {
           </button>
         </Styles.Buttons>
       </Styles.PostSection>
+      <Styles.Loader>
+        <div>{props.loading && <img src={loader} alt="img" />}</div>
+      </Styles.Loader>
       <Styles.NewsFeed>
         <Posts />
       </Styles.NewsFeed>
@@ -57,8 +61,8 @@ const MainSection = (props) => {
 
 const mapStateToProps = (state) => {
   return {
-    loading: state.postsState.loading,
     user: state.user.user,
+    loading: state.postsState.loading,
   };
 };
 

@@ -1,36 +1,35 @@
 import styled from "styled-components";
 import {
-  black,
   blue,
   blueBorder,
-  darkGrey,
   greyColor,
   lightGrey,
   paleBlack,
-  paleBlueBackground,
   paleGreyColor,
   white,
 } from "../../colors";
 
 const Container = styled.div`
-  position: absolute;
+  position: fixed;
   left: 0;
   top: 0;
   width: 100%;
-  min-height: 100%;
-  z-index: 3000;
+  height: 100%;
+  z-index: 555;
   display: flex;
   justify-content: center;
   align-items: flex-start;
   padding: 20px 0 20px 0;
   background-color: ${paleBlack} !important;
+  overflow: visible;
 `;
 const ModalBody = styled.div`
   display: flex;
   flex-direction: column;
   justify-content: space-between;
   width: 500px;
-  min-height: 350px;
+  max-height: 90%;
+  overflow: visible;
   padding: 15px 0 15px 0;
   border-radius: 10px;
   margin: 0 auto;
@@ -168,10 +167,14 @@ const UploadedMedia = styled.div`
   max-width: 100%;
   padding: 10px;
   margin: 10px;
-  min-height: 80px;
+  min-height: 10px;
+  max-height: 99%;
   img {
     max-width: 100%;
-    max-height: 300px;
+    max-height: 280px;
+    @media (max-width: 768px) {
+      max-height: 200px;
+    }
   }
 `;
 export {

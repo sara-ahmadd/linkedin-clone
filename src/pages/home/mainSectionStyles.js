@@ -5,22 +5,21 @@ const Container = styled.div`
   display: flex;
   flex-direction: column;
   height: 100%;
-  text-align: center;
-  justify-content: flex-start;
-  align-items: strech;
-  gap: 10px;
   width: 800px;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
   filter: drop-shadow(0px 4px 3px rgba(114, 113, 113, 0.54));
   h4 {
     padding: 0;
     margin: 0;
   }
   div {
-    background-color: ${colors.white};
+    background-color: none !important;
   }
-  @media (max-width: 768px) {
+
+  @media (max-width: 1100px) {
     width: 90%;
-    padding-right: 10px;
     margin: 0 auto;
   }
 `;
@@ -30,10 +29,11 @@ const PostSection = styled.div`
   flex-direction: column;
   align-items: center;
   margin-top: 0;
-  justify-content: flex-start;
+  justify-content: center;
   gap: 10px;
-  max-width: 100%;
+  width: 100%;
   padding: 15px 10px;
+  background-color: ${colors.white};
 `;
 const Post = styled.div`
   display: flex;
@@ -53,7 +53,7 @@ const Post = styled.div`
       outline: none;
     }
     &:hover {
-      background-color: ${colors.greyColor};
+      background-color: ${colors.lightGrey};
     }
   }
 `;
@@ -67,7 +67,7 @@ const UserImg = styled.div`
   }
 `;
 const iconsDiv = styled.div`
-  width: 100%;
+  width: 90%;
   display: flex;
   flex-wrap: wrap;
   justify-content: space-between;
@@ -86,8 +86,27 @@ const iconsDiv = styled.div`
 
 const Buttons = styled(iconsDiv)``;
 const NewsFeed = styled.div`
-  display: flex;
   background-color: transparent !important;
+  width: 100%;
+`;
+const Loader = styled.div`
+  background: none;
+  div {
+    background: none;
+    img {
+      width: 50px;
+      height: 50px;
+    }
+  }
 `;
 
-export { Buttons, NewsFeed, iconsDiv, UserImg, Post, PostSection, Container };
+export {
+  Buttons,
+  NewsFeed,
+  iconsDiv,
+  UserImg,
+  Post,
+  PostSection,
+  Container,
+  Loader,
+};
